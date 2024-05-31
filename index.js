@@ -1,8 +1,6 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
 
-import { makeExecutableSchema } from 'graphql-tools';
-import { GraphQLSchema } from 'graphql';
 
 import { resolvers } from './src/graphql/resolvers/index.js';
 import { Book } from './src/graphql/types/index.js';
@@ -13,13 +11,10 @@ const SchemaDef = `
   }
 `;
 
-const schema = makeExecutableSchema({
-  typeDefs: [SchemaDef, Book],
-  resolvers
-});
 
 const server = new ApolloServer({
-  schema
+  typeDefs: [SchemaDef, Book],
+  resolvers
   });
   
   // Passing an ApolloServer instance to the `startStandaloneServer` function:
